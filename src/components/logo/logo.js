@@ -1,0 +1,2 @@
+import './img/logo.svg';
+

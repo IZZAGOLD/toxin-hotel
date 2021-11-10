@@ -1,0 +1,16 @@
+@import './colors.scss';
+
+html, body {
+  height: 100%;
+}
+
+html {
+  font: 16px Montserrat, Helvetica, sans-serif;
+  color: $color-primary-100;
+}
+
+body {
+  max-width: 120rem;
+  min-width: 20rem;
+  margin: 0 auto;
+}
