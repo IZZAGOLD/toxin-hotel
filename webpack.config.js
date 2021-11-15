@@ -1,72 +1,92 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+let mode = 'development'
+if (process.env.NODE_ENV === 'production') {
+    mode = 'production'
+}
+console.log(mode + ' mode')
 
 module.exports = {
+    mode: mode,
     entry: {
-        main: path.resolve(__dirname, './src/pages/Colors&Type/colors-type.js'),
+        scripts: path.resolve(__dirname, './src/pages/Colors&Type/colors-type.js'),
+        user: './src/user.js',
     },
     output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, './docs'),
+        filename: '[name].[contenthash].js',
+        assetModuleFilename: "assets/[hash][ext][query]",
+        clean: true,
     },
-    devServer: {
-        open: true,
+    devtool: 'source-map',
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
     },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: '[name].[contenthash].css'
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './src/pages/Colors&Type/colors-type.pug'),
+            filename: 'index.html',
+        })],
     module: {
         rules: [
             {
-                test: /\.pug$/,
-                loader: 'pug-loader',
-                options: {
-                    pretty: true,
-                },
+                test: /\.html$/i,
+                loader: "html-loader",
             },
-
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'postcss-loader',
+                    (mode === 'development') ? "style-loader" : MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    [
+                                        "postcss-preset-env",
+                                        {
+                                            // Options
+                                        },
+                                    ],
+                                ],
+                            },
+                        },
+                    },
+                    "sass-loader",
                 ],
             },
             {
-                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                exclude: [
-                    path.resolve(__dirname, './src/img/'),
-                    path.resolve(__dirname, './src/components/'),
-                ],
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: 'fonts/',
-                    },
-                }],
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                generator: {
+                    filename: 'img/[name][ext][query]'
+                },
+                type: 'asset/resource',
             },
             {
-                test: /\.(png|gif|svg|jpe?g)$/,
-                exclude: [
-                    path.resolve(__dirname, './src/fonts/'),
-                    path.resolve(__dirname, './src/favicons/'),
-                ],
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: 'img/',
-                    },
-                }],
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'asset/resource',
             },
-        ],
+            {
+                test: /\.pug$/,
+                loader: "pug-loader",
+                exclude: /(node_modules|bower_components)/,
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            }
+        ]
     },
-    plugins: [
-        new MiniCssExtractPlugin(),
-        new HtmlWebpackPlugin({
-            title: 'title',
-            template: path.resolve(__dirname, './src/pages/Colors&Type/colors-type.pug'),
-            filename: 'index.html',
-        }),
-    ],
 }

@@ -1,2 +1,4 @@
-  a.logo(href='./index.html')
-    img.logo__image(src='./img/logo.svg' alt='Логотип Toxin')
+mixin logo
+  - const link = require('../../components/logo/img/logo.svg')
+  img.logo(src=link alt='Логотип Toxin')
+
