@@ -11,7 +11,7 @@ module.exports = {
     mode: mode,
     entry: {
         scripts: path.resolve(__dirname, './src/pages/Colors&Type/colors-type.js'),
-        user: './src/user.js',
+        // user: './src/user.js',
     },
     output: {
         filename: '[name].[contenthash].js',
@@ -23,6 +23,12 @@ module.exports = {
         splitChunks: {
             chunks: 'all',
         },
+    },
+    resolve: {
+        alias: {
+            images: path.resolve(__dirname, 'src/components'),
+            fonts: path.resolve(__dirname, 'src/components'),
+        }
     },
     plugins: [
         new MiniCssExtractPlugin({

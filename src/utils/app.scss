@@ -1,5 +1,11 @@
-@import './colors.scss';
+@import './vars.scss';
 @import './fonts.scss';
+
+*, *:after, *:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 html, body {
   height: 100%;

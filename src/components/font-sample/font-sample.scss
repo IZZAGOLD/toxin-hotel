@@ -1,0 +1,61 @@
+@import '../../utils/vars.scss';
+@import '../../utils/mixins.scss';
+
+.font-sample {
+  $blockClass: &;
+  display: flex;
+
+  &__name {
+    font-family: Montserrat, Helvetica, sans-serif;
+    color: $color-primary-25;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: right;
+    width: 2.375rem;
+    margin-right: 1.875rem;
+  }
+
+  &__description {
+    font-style: normal;
+  }
+
+  &_type {
+    &_h1 {
+      #{$blockClass}__name {
+        padding-left: 0.5rem;
+        margin-right: 1.9375rem;
+      }
+
+      #{$blockClass}__description {
+        font-family: Quicksand, Arial, sans-serif;
+      }
+    }
+
+    &_h2 {
+      #{$blockClass}__name {
+        padding-left: 0.625rem;
+      }
+
+      #{$blockClass}__description {
+        font-family: Quicksand, Arial, sans-serif;
+      }
+    }
+
+    &_h3 {
+      #{$blockClass}__name {
+        margin-right: 1.8125rem;
+      }
+    }
+
+    &_body {
+      #{$blockClass}__name {
+        text-transform: capitalize;
+      }
+
+      #{$blockClass}__description {
+        padding-right: 2rem;
+      }
+    }
+  }
+
+}
