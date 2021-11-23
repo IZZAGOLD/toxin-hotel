@@ -10,7 +10,7 @@ console.log(mode + ' mode')
 module.exports = {
     mode: mode,
     entry: {
-        scripts: path.resolve(__dirname, './src/pages/Colors&Type/colors-type.js'),
+        scripts: path.resolve(__dirname, './src/pages/Form-elements/form-elements.js'),
         // user: './src/user.js',
     },
     output: {
@@ -35,7 +35,7 @@ module.exports = {
             filename: '[name].[contenthash].css'
         }),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/pages/Colors&Type/colors-type.pug'),
+            template: path.resolve(__dirname, './src/pages/Form-elements/form-elements.pug'),
             filename: 'index.html',
         })],
     module: {

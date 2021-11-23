@@ -1,0 +1,84 @@
+@import '../../utils/vars.scss';
+@import '../../utils/mixins.scss';
+
+@import '../../components/label/label.scss';
+@import '../../components/logo/logo.scss';
+@import '../../components/text-input/text-input.scss';
+
+
+.form-elements {
+  $blockClass: &;
+
+  &__nav {
+    @include ui-kit-navigation($marginBottom: 1.8125rem);
+  }
+
+  &__main {
+    @include inner-wrapper;
+  }
+
+  &__section {
+    display: grid;
+    @mixin section-media-query($column-count: 3) {
+      @media (max-width: $screen-md-max){
+        grid-template-columns: repeat($column-count, 1fr);
+        grid-gap: 2.5rem;
+      }
+      @media (max-width: $screen-xs-max) {
+      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+      }
+    }
+
+    &:first-child {
+      margin-bottom: 4.875rem;
+      grid-template-columns: 27.63% 10.88% 27.63% 6.2176% 27.63%;
+      @include section-media-query;
+    }
+
+    &:nth-child(2) {
+      margin-bottom: 2.5625rem;
+      grid-template-columns: 22.95% 15.62% 27.61% 6.21% 27.61%;
+      min-height: 16.625rem;
+      @include section-media-query;
+
+      @media (max-width: $screen-xs-max) {
+        margin-bottom: 5rem;
+      }
+    }
+
+    &:nth-child(3) {
+      grid-template-columns: 22.95% 15.62% 27.61% 6.21% 27.61%;
+      @include section-media-query;
+    }
+
+    &:nth-child(4) {
+      grid-template-columns: 22.95% 15.62% 61.43%;
+      @include section-media-query(1);
+      margin-bottom: 6rem;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

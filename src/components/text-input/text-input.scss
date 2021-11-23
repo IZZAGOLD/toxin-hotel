@@ -1,0 +1,63 @@
+@import '../../utils/vars.scss';
+@import '../../utils/mixins.scss';
+
+.text-input {
+  $blockClass: &;
+  $lineHeight: 2.75rem;
+  $borderRadius: 0.25rem;
+
+  display: flex;
+  position: relative;
+  line-height: $lineHeight;
+  font-size: 0.75rem;
+
+  &__field {
+    font-family: Montserrat, Helvetica, sans-serif;
+    width: 100%;
+    line-height: 2.625rem;
+    border: 0.0625rem solid $color-primary-25;
+    transition: border .25s ease-in-out;
+    border-radius: $borderRadius;
+    font-size: 0.875rem;
+    color: $color-primary-75;
+    padding: 0 2.375rem 0 0.875rem;
+    appearance: none;
+
+    &:focus,
+    &:hover {
+      outline: none;
+      border: 0.0625rem solid $color-primary-50;
+    }
+  }
+
+  &__submit-button {
+    @include reset-button;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0.8125rem;
+    width: 1.125rem;
+    height: 1.125rem;
+    background: ('../../components/text-input/img/arrow_forward.svg') no-repeat center center;
+  }
+
+  &_hovered {
+    #{$blockClass}__field {
+      outline: none;
+      border: 0.0625rem solid $color-primary-50;
+    }
+  }
+
+  ::placeholder {
+    color: $color-primary-50;
+    font-family: Montserrat, Helvetica, sans-serif;
+  }
+
+  &_format {
+    &_date {
+      ::placeholder {
+        text-transform: uppercase;
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+include ../../components/logo/logo
+include ../../components/label/label
+include ../../components/text-input/text-input
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        title 'Form Elements'
+    body
+        header
+            .form-elements
+                nav.form-elements__nav
+                    +logo
+                .form-elements__main
+                    section.form-elements__section
+                        .form-elements__section-column
+                            .form-elements__text-input-group
+                                +label({
+                                    label: 'text field',
+                                    hint: 'default'
+                                })
+                                    .form-elements__text-input
+                                        +text-input({
+                                            name: 'input-email',
+                                            placeholder: 'Email',
+                                            type: 'email'
+                                        })
+                                .form-elements__text-input-group.form-elements__text-input-group_hovered
+                                    +label({
+                                        label: 'text field',
+                                        hint: 'hover/focus'
+                                    })
+                                    .form-elements__text-input
+                                        +text-input({
+                                            name: 'input-hovered',
+                                            placeholder: 'Some text',
+                                            value: 'This is pretty awesome',
+                                            isHovered: true
+                                        })
