@@ -4,7 +4,9 @@
 @import '../../components/label/label.scss';
 @import '../../components/logo/logo.scss';
 @import '../../components/text-input/text-input.scss';
-
+@import '../../components/dropdown/dropdown.scss';
+@import '../../components/button/button.scss';
+@import '../../components/calendar/calendar.scss';
 
 .form-elements {
   $blockClass: &;
@@ -20,12 +22,12 @@
   &__section {
     display: grid;
     @mixin section-media-query($column-count: 3) {
-      @media (max-width: $screen-md-max){
+      @media (max-width: $screen-md-max) {
         grid-template-columns: repeat($column-count, 1fr);
         grid-gap: 2.5rem;
       }
       @media (max-width: $screen-xs-max) {
-      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
       }
     }
 
@@ -58,27 +60,112 @@
     }
   }
 
+  &__section-column-gap {
+    @media (max-width: $screen-md-max) {
+      display: none;
+    }
+  }
 
+  &__text-input-group {
+    margin-bottom: 1.25rem;
 
+    &_theme {
+      &_with-mask {
+        margin-bottom: 2.25rem;
+      }
 
+      &_with-submit {
+        padding-right: 3.375rem;
+      }
+    }
+  }
 
+  &__text-input {
+    margin-top:0.3125rem;
+  }
 
+  &__dropdown-label {
+    margin-bottom: 0.3125rem;
+  }
 
+  &__dropdown {
+    margin-bottom: 1.4375rem;
 
+    &_theme {
+      &_datepicker {
+        margin-bottom: 2.3125rem;
+      }
 
+      &_date-filter {
+        margin-bottom: 2.5625rem;
+        padding-right: 3.375rem;
+        #{$blockClass}__dropdown-label {
+          margin-bottom: 0;
+        }
+      }
+      &_expanded {
+        @media (max-width: $screen-xs-max) {
+          min-height: 9rem;
+        }
+      }
 
+      &_empty,
+      &_filled {
+        @media (max-width: $screen-xs-max) {
+          min-height: 11rem;
+        }
+      }
+    }
 
-
-
-
-
-
-
-
-
-
-
+  }
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

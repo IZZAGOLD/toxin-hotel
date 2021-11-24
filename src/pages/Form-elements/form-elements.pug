@@ -1,6 +1,9 @@
 include ../../components/logo/logo
 include ../../components/label/label
 include ../../components/text-input/text-input
+include ../../components/dropdown/dropdown
+include ../../components/button/button
+include ../../components/calendar/calendar
 doctype html
 html
     head
@@ -19,21 +22,64 @@ html
                                     label: 'text field',
                                     hint: 'default'
                                 })
-                                    .form-elements__text-input
+                                .form-elements__text-input
                                         +text-input({
                                             name: 'input-email',
                                             placeholder: 'Email',
                                             type: 'email'
                                         })
-                                .form-elements__text-input-group.form-elements__text-input-group_hovered
-                                    +label({
+                            .form-elements__text-input-group.form-elements__text-input-group_hovered
+                                +label({
                                         label: 'text field',
                                         hint: 'hover/focus'
                                     })
                                     .form-elements__text-input
-                                        +text-input({
+                                     +text-input({
                                             name: 'input-hovered',
                                             placeholder: 'Some text',
                                             value: 'This is pretty awesome',
                                             isHovered: true
+                                        })
+                            .form-elements__dropdown
+                                .form-elements__dropdown-label
+                                    +label({
+                                        label: 'dropdown'
+                                    })
+                                +dropdown({
+                                    name: 'quests-default',
+                                    type: 'quests',
+                                    placeholder: 'Сколько гостей'
+                                })
+                            .form-elements__text-input-group.form__text-input-group_theme_with-mask
+                                    +label({
+                                        label: 'masked text field'
+                                    })
+                                    .form-elements__text-input
+                                        +text-input({
+                                            name: 'input-with-mask',
+                                            format: 'date',
+                                            hasDateMask: true
+                                        })
+                            .form-elements__dropdown.form-elements__dropdown_theme_datepicker.js-form-elements__dropdown_theme_datepicker
+                                +calendar({
+                                    type: 'double',
+                                    labels: ['date dropdown', 'date dropdown']
+                                })
+                            .form-elements__dropdown.form-elements__dropdown_theme_date-filter.js-form-elements__dropdown_theme_date-filter
+                                +calendar({
+                                    type: 'single',
+                                    labels: ['filter date dropdown'],
+                                    placeholder: 'Выберите даты',
+                                    values: '19.08.2021-23.08.2021'
+                                })
+                            .form-elements__text-input-group.form-elements__text-input-group_theme_with-submit
+                                +label({
+                                    label: 'subscription text field'
+                                })
+                                    .form-elements__text-input
+                                        +text-input({
+                                            name: 'input-submit',
+                                            placeholder: 'Email',
+                                            withButton: true,
+                                            type: 'email'
                                         })

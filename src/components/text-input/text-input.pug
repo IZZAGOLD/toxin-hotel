@@ -19,7 +19,7 @@ mixin text-input(options)
 
     - const jsHasDateMaskClass = hasDateMask ? 'js-text-input_has-mask' : '';
 
-    - const bemFactory = require('../../utils/helpers').bemFactory;
+    - const bemFactory = require('../../utils/helpers.js').bemFactory;
     - const createBemClasses = bemFactory('text-input');
 
     span(class=createBemClasses({ modifiers }) class=jsHasDateMaskClass)

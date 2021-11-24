@@ -1,0 +1,29 @@
+mixin button(options)
+    -
+        const {
+            theme,
+            size,
+            color,
+            caption,
+            type,
+            href,
+            isHovered,
+            withArrow,
+            attr,
+        } = options || {};
+
+    - const modifiers = { theme, size, color };
+
+    - modifiers.hovered = isHovered;
+    - modifiers['with-arrow'] = withArrow;
+
+    - const bemFactory = require('../../utils/helpers').bemFactory;
+    - const createBemClasses = bemFactory('button');
+    - const isButton = ['button', 'submit', 'reset'].includes(type);
+    - const tag = isButton ? 'button' : 'a';
+
+    #{tag}(class=createBemClasses({ modifiers }) type=type href=href)&attributes(attr)
+        span.button__inner-wrapper
+            span.button__caption= caption
+            if withArrow
+                span.button__arrow.material-icons= 'arrow_forward'
