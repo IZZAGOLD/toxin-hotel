@@ -1,0 +1,7 @@
+mixin rating(options)
+    - const { base, rate } = options || {};
+
+    .rating
+        - for(let i = 0; i < base; i++)
+            - const classBordered = i >= rate ? 'rating__star_type_outline' : '';
+            span.rating__star(class=classBordered)

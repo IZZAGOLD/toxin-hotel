@@ -7,7 +7,10 @@
 @import '../../components/dropdown/dropdown.scss';
 @import '../../components/button/button.scss';
 @import '../../components/calendar/calendar.scss';
-
+@import '../../components/checkbox/checkbox.scss';
+@import '../../components/radio-button/radio-button.scss';
+@import '../../components/like-button/like-button.scss';
+@import '../../components/rating/rating.scss';
 .form-elements {
   $blockClass: &;
 
@@ -116,8 +119,101 @@
         }
       }
     }
-
+    &__collapsed {
+      margin-bottom: .95rem;
+    }
   }
+
+  &__checkbox {
+    margin-bottom: 0.625rem;
+  }
+
+  &__checkbox-list-group {
+    margin-bottom: 2.2rem;
+    padding-right: 5rem;
+    &_theme {
+      &rich{
+        padding: 0.8125rem 3.5rem 0 0;
+
+        #{$blockClass}__checkbox {
+          margin-bottom: 0.4375rem;
+          &:first-child {
+            padding-right: 2rem;
+          }
+        }
+      }
+    }
+  }
+
+  &__checkbox-list-label {
+    margin-bottom: 1rem;
+  }
+
+  &__checkbox-list {
+    list-style: none;
+  }
+
+  &__radio-group {
+    margin-bottom: 1.625rem;
+  }
+
+  &__radio-button-label {
+    margin-bottom: .875rem;
+  }
+
+  &__radio-button {
+    display: inline-block;
+    margin-right: 1.25rem;
+    margin-bottom: .625rem;
+  }
+
+  &__toggle-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.8rem;
+  }
+
+  &__toggle-checkbox-label {
+    margin-bottom: 1rem;
+  }
+
+  &__toggle-checkbox {
+    margin-bottom: .625rem;
+  }
+
+  &__like-button-group {
+    margin-bottom: 2.3rem;
+  }
+
+  &__like-button-label {
+    margin-bottom: 1rem;
+  }
+
+  &__like-button {
+    display: inline-block;
+    margin-right: .625rem;
+  }
+
+  &__rating {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+  &__rating-label {
+    margin-bottom: .875rem;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

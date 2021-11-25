@@ -4,6 +4,10 @@ include ../../components/text-input/text-input
 include ../../components/dropdown/dropdown
 include ../../components/button/button
 include ../../components/calendar/calendar
+include ../../components/checkbox/checkbox
+include ../../components/radio-button/radio-button
+include ../../components/like-button/like-button
+include ../../components/rating/rating
 doctype html
 html
     head
@@ -23,18 +27,18 @@ html
                                     hint: 'default'
                                 })
                                 .form-elements__text-input
-                                        +text-input({
-                                            name: 'input-email',
-                                            placeholder: 'Email',
-                                            type: 'email'
-                                        })
+                                    +text-input({
+                                        name: 'input-email',
+                                        placeholder: 'Email',
+                                        type: 'email'
+                                    })
                             .form-elements__text-input-group.form-elements__text-input-group_hovered
                                 +label({
-                                        label: 'text field',
-                                        hint: 'hover/focus'
-                                    })
+                                    label: 'text field',
+                                    hint: 'hover/focus'
+                                })
                                     .form-elements__text-input
-                                     +text-input({
+                                        +text-input({
                                             name: 'input-hovered',
                                             placeholder: 'Some text',
                                             value: 'This is pretty awesome',
@@ -51,15 +55,15 @@ html
                                     placeholder: 'Сколько гостей'
                                 })
                             .form-elements__text-input-group.form__text-input-group_theme_with-mask
-                                    +label({
-                                        label: 'masked text field'
+                                +label({
+                                    label: 'masked text field'
+                                })
+                                .form-elements__text-input
+                                    +text-input({
+                                        name: 'input-with-mask',
+                                        format: 'date',
+                                        hasDateMask: true
                                     })
-                                    .form-elements__text-input
-                                        +text-input({
-                                            name: 'input-with-mask',
-                                            format: 'date',
-                                            hasDateMask: true
-                                        })
                             .form-elements__dropdown.form-elements__dropdown_theme_datepicker.js-form-elements__dropdown_theme_datepicker
                                 +calendar({
                                     type: 'double',
@@ -83,3 +87,94 @@ html
                                             withButton: true,
                                             type: 'email'
                                         })
+                        .form-elements__section-column-gap
+                        .form-elements__section-column
+                            .form-elements__checkbox-list-group
+                                .form-elements__checkbox-list-label
+                                     +label({
+                                         label: 'checkbox buttons'
+                                     })
+                                ul.form-elements__checkbox-list
+                                    li.form-elements__checkbox
+                                        +checkbox({
+                                            name: 'field-smoke',
+                                            label: 'Можно курить'
+                                        })
+                                    li.form-elements__checkbox
+                                        +checkbox({
+                                            name: 'field-pets',
+                                            label: 'Можно с питомцами',
+                                            isChecked: true
+                                        })
+                                    li.form-elements__checkbox
+                                        +checkbox({
+                                            name: 'filed-guests',
+                                            label: 'Можно пригласить гостей (до 10 человек)',
+                                            isChecked: true
+                                        })
+                            .form-elements__radio-group
+                                .form-elements__radio-button-label
+                                    +label({
+                                        label: 'radio buttons'
+                                    })
+                                .form-elements__radio-button
+                                    +radio-button({
+                                        name: 'field-gender',
+                                        value: 'male',
+                                        label: 'Мужчина',
+                                        isChecked:  true
+                                    })
+                                .form-elements__radio-button
+                                    +radio-button({
+                                        name: 'field-gender',
+                                        value: 'female',
+                                        label: 'Женщина'
+                                    })
+                            .form-elements__toggle-group
+                                .form-elements__toggle-checkbox-label
+                                    +label({
+                                        label: 'toggle'
+                                    })
+                                .form-elements__toggle-checkbox
+                                    +checkbox({
+                                        name: 'field-promo',
+                                        theme: 'toggle',
+                                        label: 'Получать спецпредложения',
+                                        isChecked: true
+                                    })
+                                .form-elements__toggle-checkbox
+                                    +checkbox({
+                                        name: 'field-promo-second',
+                                        theme: 'toggle',
+                                        label: 'Получать спецпредложения',
+                                    })
+                            .form-elements__like-button-group
+                                .form-elements__like-button-label
+                                    +label({
+                                        label: 'like button'
+                                    })
+                                .form-elements__like-button
+                                    +like-button({
+                                        count: 2,
+
+                                    })
+                                .form-elements__like-button
+                                    +like-button({
+                                        count: 12,
+                                        isFavorite: true
+                                    })
+                            .form-elements__rating-group
+                                .form-elements__rating-label
+                                    +label({
+                                        label: 'rate button'
+                                    })
+                                .form-elements__rating
+                                    +rating({
+                                        base: 5,
+                                        rate: 4
+                                    })
+                                .form-elements__rating
+                                    +rating({
+                                        base: 5,
+                                        rate: 5
+                                    })
