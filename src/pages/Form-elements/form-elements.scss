@@ -11,6 +11,13 @@
 @import '../../components/radio-button/radio-button.scss';
 @import '../../components/like-button/like-button.scss';
 @import '../../components/rating/rating.scss';
+@import '../../components/rating/rating.scss';
+@import '../../components/range-slider/range-slider.scss';
+@import '../../components/pagination/pagination.scss';
+@import '../../components/feedback/feedback.scss';
+@import '../../components/feature/feature.scss';
+@import '../../components/checkbox-expandable-list/checkbox-expandable-list.scss';
+@import '../../components/bullet-list/bullet-list.scss';
 .form-elements {
   $blockClass: &;
 
@@ -203,8 +210,65 @@
     margin-bottom: .875rem;
   }
 
+  &__range-slider {
+    margin-bottom: 2.075rem;
+    padding-right: 3.375rem;
+  }
 
+  &__button-group {
+    margin-bottom: 2.25rem;
 
+    #{$blockClass}__row {
+      display: flex;
+      margin-bottom: 1.75rem;
+    }
+  }
+
+  &__button-label {
+    margin-bottom: 1rem;
+  }
+
+  &__button {
+    margin-right: 1.25rem;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  &__pagination-label {
+    margin-bottom: 1rem;
+  }
+
+  &__bullet-list-group {
+    padding: 0.8125rem 3.75rem 0 0;
+    margin-bottom: 1.5rem;
+  }
+
+  &__bullet-list-label {
+    margin-bottom: 0.8125rem;
+  }
+
+  &__checkbox-list {
+    list-style: none;
+  }
+
+  &__checkbox-expandable-list {
+    margin-bottom: 1.3125rem;
+
+    &_expanded {
+      margin-bottom: 0.6875rem;
+    }
+  }
+
+  &__feature {
+    border-bottom: 0.0625rem solid $color-primary-10;
+  }
+
+  &__feedback-group {
+    margin-top: 1.875rem;
+    margin-right: .0625rem;
+  }
 
 
 

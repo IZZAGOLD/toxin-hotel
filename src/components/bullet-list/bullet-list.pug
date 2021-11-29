@@ -1,0 +1,6 @@
+mixin bullet-list(options)
+    - const { items } = options || {}
+
+    ul.bullet-list
+        each item, index in items
+            li.bullet-list__item!= item.text

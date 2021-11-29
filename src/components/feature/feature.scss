@@ -1,0 +1,28 @@
+@import '../../utils/vars.scss';
+
+.feature {
+  padding: 1.25rem 0;
+
+  &__icon {
+    display: inline-block;
+    float: left;
+    font-size: 3rem;
+    background: $grad-purple;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &__title,
+  &__hint {
+    display: block;
+    color: $color-primary-75;
+    font-size: 0.875rem;
+    font-weight: normal;
+    line-height: 1.5rem;
+    padding-left: 3.625rem;
+  }
+
+  &__title {
+    font-weight: bold;
+  }
+}

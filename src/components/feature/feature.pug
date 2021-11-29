@@ -1,0 +1,7 @@
+mixin feature(options)
+    - const { icon, title, hint } = options || {};
+
+    .feature
+        span.feature__icon.material-icons= icon
+        p.feature__title= title
+        p.feature__hint= hint

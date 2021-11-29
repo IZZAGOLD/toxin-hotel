@@ -8,6 +8,12 @@ include ../../components/checkbox/checkbox
 include ../../components/radio-button/radio-button
 include ../../components/like-button/like-button
 include ../../components/rating/rating
+include ../../components/range-slider/range-slider
+include ../../components/pagination/pagination
+include ../../components/feedback/feedback
+include ../../components/bullet-list/bullet-list
+include ../../components/checkbox-expandable-list/checkbox-expandable-list
+include ../../components/feature/feature
 doctype html
 html
     head
@@ -91,9 +97,9 @@ html
                         .form-elements__section-column
                             .form-elements__checkbox-list-group
                                 .form-elements__checkbox-list-label
-                                     +label({
-                                         label: 'checkbox buttons'
-                                     })
+                                    +label({
+                                        label: 'checkbox buttons'
+                                    })
                                 ul.form-elements__checkbox-list
                                     li.form-elements__checkbox
                                         +checkbox({
@@ -122,7 +128,7 @@ html
                                         name: 'field-gender',
                                         value: 'male',
                                         label: 'Мужчина',
-                                        isChecked:  true
+                                        isChecked: true
                                     })
                                 .form-elements__radio-button
                                     +radio-button({
@@ -177,4 +183,242 @@ html
                                     +rating({
                                         base: 5,
                                         rate: 5
+                                    })
+                        .form-elements__section-column-gap
+                        .form-elements__section-column
+                            .form-elements__range-slider
+                                +range-slider({
+                                    min: 0,
+                                    max: 16000,
+                                    from: 5000,
+                                    to: 10000
+                                })
+                            .form-elements__button-group
+                                .form-elements__button-label
+                                    +label({
+                                        label: 'buttons'
+                                    })
+                                .form-elements__row
+                                    .form-elements__button
+                                        +button({
+                                            theme: 'default',
+                                            type: 'button',
+                                            caption: 'click me'
+                                        })
+                                    .form-elements__button
+                                        +button({
+                                            theme: 'default',
+                                            type: 'button',
+                                            caption: 'click me',
+                                            isHovered: true
+                                        })
+                                .form-elements__row
+                                    .form-elements__button
+                                        +button({
+                                            theme: 'white',
+                                            type: 'button',
+                                            caption: 'click me'
+                                        })
+                                    .form-elements__button
+                                        +button({
+                                            theme: 'white',
+                                            type: 'button',
+                                            caption: 'click me',
+                                            isHovered: true
+                                        })
+                                .form-elements__row
+                                    .form-elements__button
+                                        +button({
+                                            theme: 'textual',
+                                            type: 'button',
+                                            caption: 'click me',
+                                        })
+                                    .form-elements__button
+                                        +button({
+                                            theme: 'textual',
+                                            type: 'button',
+                                            caption: 'click me',
+                                            isHovered: true,
+                                        })
+                                .form-elements__row
+                                    +button({
+                                        theme: 'default',
+                                        type: 'button',
+                                        caption: 'перейти к оплате',
+                                        size: 'fluid',
+                                        withArrow: true,
+                                    })
+                                .form-elements__pagination-group
+                                    .form-elements__pagination-label
+                                        +label({
+                                            label: 'pagination'
+                                        })
+                                    +pagination({
+                                        source: JSON.stringify([...Array(180).keys()]),
+                                        pageSize: 12,
+                                        pageRange: 1,
+                                    })
+                    section.form-elements__section
+                        .form-elements__section-column
+                            .form-elements__dropdown.form-elements__dropdown_collapsed.js-form-elements__dropdown_collapsed
+                                .form-elements__dropdown-label
+                                    +label({
+                                        label: 'dropdown',
+                                        hint: 'default',
+                                    })
+                                +dropdown({
+                                    name: 'rooms-collapsed',
+                                    type: 'rooms',
+                                    placeholder: 'Удобства',
+                                    rows: [
+                                        {count: 2, text: 'спальни',},
+                                        {count: 2, text: 'кровати',},
+                                        {count: 0, text: 'ванные комнаты',},
+                                    ],
+                                    hasZIndexPriority: true,
+                                })
+                            .form-elements__dropdown.form-elements__dropdown_theme_expanded.js-form-elements__dropdown_theme_expanded
+                                .form-elements__dropdown-label
+                                    +label({
+                                        label: 'dropdown',
+                                        hint: 'expanded',
+                                    })
+                                +dropdown({
+                                    name: 'rooms-expanded',
+                                    type: 'rooms',
+                                    placeholder: 'Удобства',
+                                    isExpanded: true,
+                                    rows: [
+                                        {count: 2, text: 'спальни',},
+                                        {count: 2, text: 'кровати',},
+                                        {count: 0, text: 'ванные комнаты',},
+                                    ]
+                                })
+                        .form-elements__section-column-gap
+                        .form-elements__section-column
+                            .form-elements__dropdown.form-elements__dropdown_theme_empty.js-form-elements__dropdown_theme_empty
+                                .form-elements__dropdown-label
+                                    +label({
+                                        label: 'dropdown',
+                                    })
+                                +dropdown({
+                                    name: 'guests-empty',
+                                    type: 'guests',
+                                    placeholder: 'Сколько гостей',
+                                    isExpanded: true,
+                                    rows: [
+                                        {count: 0, text: 'взрослые',},
+                                        {count: 0, text: 'дети',},
+                                        {count: 0, text: 'младенцы',},
+                                    ]
+                                })
+                        .form-elements__section-column-gap
+                        .form-elements__section-column
+                            .form-elements__dropdown.form-elements__dropdown_theme_filled.js-form-elements__dropdown_theme_filled
+                                .form-elements__dropdown-label
+                                    +label({
+                                        label: 'dropdown',
+                                    })
+                                +dropdown({
+                                    name: 'guests-filled',
+                                    type: 'guests',
+                                    placeholder: 'Сколько гостей',
+                                    isExpanded: true,
+                                    rows: [
+                                        {count: 2, text: 'взрослые',},
+                                        {count: 1, text: 'дети',},
+                                        {count: 0, text: 'младенцы',},
+                                    ]
+                                })
+                    section.form-elements__section
+                        .form-elements__section-column
+                            .form-elements__checkbox-expandable-list.form-elements__checkbox-expandable-list
+                                +checkbox-expandable-list({
+                                    label: 'Expandable checkbox list',
+                                })
+                            .form-elements__checkbox-expandable-list.form-elements__checkbox-expandable-list_expanded
+                                +checkbox-expandable-list({
+                                    label: 'Expandable checkbox list',
+                                    isExpanded: true,
+                                    items: [
+                                        {name: 'field-breakfast', label: 'Завтрак'},
+                                        {name: 'field-table', label: 'Письменный стол', isChecked: true},
+                                        {
+                                            name: 'field-baby-chair-for-eat',
+                                            label: 'Стул для кормления',
+                                            isChecked: true
+                                        },
+                                        {name: 'field-baby-bed', label: 'Кроватка', isChecked: true},
+                                        {name: 'field-tv', label: 'Телевизор'},
+                                        {name: 'field-shampoo', label: 'Шампунь'},
+                                        {name: 'field-tv-2', label: 'Телевизор'},
+                                        {name: 'field-shampoo-2', label: 'Шампунь'},
+                                    ]
+                                })
+                        .form-elements__section-column-gap
+                        .form-elements__section-column
+                            .form-elements__checkbox-list-group.form-elements__checkbox-list-group_theme_rich
+                                .form-elements__checkbox-list-label
+                                    +label({
+                                        label: 'rich checkbox buttons',
+                                    })
+                                ul.form-elements__checkbox-list
+                                    li.form-elements__checkbox
+                                        +checkbox({
+                                            name: 'field-wide-hall',
+                                            label: 'Широкий коридор',
+                                            hint: 'Ширина коридоров в номере не менее 91 см.',
+                                            theme: 'rich',
+                                        })
+                                    li.form-elements__checkbox
+                                        +checkbox({
+                                            name: 'field-assistant',
+                                            label: 'Помощник для инвалидов',
+                                            hint: 'На 1 этаже вас встретит специалист и проводит до номера.',
+                                            theme: 'rich',
+                                        })
+                        .form-elements__section-column-gap
+                        .form-elements__section-column
+                            .form-elements__bullet-list-group
+                                .form-elements__bullet-list-label
+                                    +label({
+                                        label: 'Bullet list',
+                                    })
+                                +bullet-list({
+                                    items: [
+                                        {text: 'Нельзя с питомцами'},
+                                        {text: 'Без вечеринок и мероприятий'},
+                                        {text: 'Время прибытия &mdash; после 13:00, а выезд до 12:00'},
+                                    ]
+                                })
+                    section.form-elements__section
+                        .form-elements__section-column
+                            .form-elements__feature-group
+                                .form-elements__feature
+                                    +feature({
+                                        icon: 'mood',
+                                        title: 'Комфорт',
+                                        hint: 'Шумопоглощающие стены',
+                                    })
+                                .form-elements__feature
+                                    +feature({
+                                        icon: 'location_city',
+                                        title: 'Удобство',
+                                        hint: 'Окно в каждой из спален',
+                                    })
+                        .form-elements__section-column-gap
+                        .form-elements__section-column
+                            .feedback-group.form-elements__feedback-group
+                                .feedback-group__feedback
+                                    +feedback({
+                                        author: {
+                                            name: 'Мурад Сарафанов',
+                                            image: {
+                                                alt: 'Фото автора',
+                                            }
+                                        },
+                                        date: '5 дней назад',
+                                        text: 'Великолепный матрас на&nbsp;кровати в&nbsp;основной спальне! А&nbsp;пуфик вообще потрясающий. И&nbsp;стены, действительно, шумоподавляющие. Выкрикивал комплименты повару&nbsp;&mdash; никто не&nbsp;жаловался из&nbsp;соседей.',
+                                        favoritesCount: 12,
+                                        isFavorite: true,
                                     })

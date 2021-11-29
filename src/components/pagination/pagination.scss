@@ -1,0 +1,65 @@
+@import '../../utils/vars.scss';
+
+.pagination {
+  display: inline-block;
+
+  &__arrow-next,
+  &__arrow-prev {
+    margin: 0.125rem 0 0 0.0625rem;
+    color: white;
+  }
+
+  &__ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-page,
+  &-ellipsis,
+  &-next,
+  &-prev {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    font-style: normal;
+    font-size: 0.75rem;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+      color: $color-primary-50;
+    }
+  }
+
+  &-page {
+    cursor: pointer;
+
+    &_active {
+      border-radius: 50%;
+      font-weight: bold;
+      background: $grad-purple;
+
+      a {
+        color: white;
+      }
+    }
+  }
+
+  &-next,
+  &-prev {
+    border-radius: 50%;
+    background: $grad-green;
+  }
+
+  &-nav {
+    font-size: 0.875rem;
+    padding: 0.625rem 0;
+    color: $color-primary-75;
+    text-align: center;
+    @media (max-width: $screen-filter-xs-max) {
+      padding-bottom: 0;
+    }
+  }
+}
