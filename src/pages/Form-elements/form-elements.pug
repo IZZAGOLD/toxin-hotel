@@ -53,7 +53,8 @@ html
                             .form-elements__dropdown
                                 .form-elements__dropdown-label
                                     +label({
-                                        label: 'dropdown'
+                                        label: 'dropdown',
+                                        hint: 'default'
                                     })
                                 +dropdown({
                                     name: 'quests-default',
@@ -62,7 +63,8 @@ html
                                 })
                             .form-elements__text-input-group.form__text-input-group_theme_with-mask
                                 +label({
-                                    label: 'masked text field'
+                                    label: 'masked text field',
+                                    hint: 'default'
                                 })
                                 .form-elements__text-input
                                     +text-input({
@@ -80,7 +82,7 @@ html
                                     type: 'single',
                                     labels: ['filter date dropdown'],
                                     placeholder: 'Выберите даты',
-                                    values: '19.08.2021-23.08.2021'
+                                    values: '19.08.2020-23.08.2020'
                                 })
                             .form-elements__text-input-group.form-elements__text-input-group_theme_with-submit
                                 +label({
@@ -161,8 +163,7 @@ html
                                     })
                                 .form-elements__like-button
                                     +like-button({
-                                        count: 2,
-
+                                        count: 2
                                     })
                                 .form-elements__like-button
                                     +like-button({

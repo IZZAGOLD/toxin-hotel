@@ -1,0 +1,46 @@
+@import '../../utils/vars.scss';
+@import '../../utils/mixins.scss';
+
+.like-button {
+  $blockName: &;
+  @include reset-button;
+  @include reset-outline;
+  min-width: 2.5rem;
+  border-radius: 0.625rem;
+  background: $color-primary-25;
+  color: $color-primary-25;
+  padding: 0.0625rem;
+
+  &__inner-wrapper {
+    border-radius: 0.625rem;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+  }
+
+
+  &__counter {
+    padding: 0 0.3125rem;
+    line-height: 1.125rem;
+    font-size: 0.625rem;
+  }
+
+  &__icon {
+    padding-left: 0.25rem;
+    line-height: 1.125rem;
+    font-size: 0.625rem;
+  }
+
+  &_favorite {
+    background: $grad-purple;
+
+    #{$blockName}__counter {
+      color: $color-purple;
+    }
+
+    #{$blockName}__icon {
+      color: $color-purple;
+    }
+  }
+}

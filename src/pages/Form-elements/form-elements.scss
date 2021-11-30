@@ -2,7 +2,6 @@
 @import '../../utils/mixins.scss';
 
 @import '../../components/label/label.scss';
-@import '../../components/logo/logo.scss';
 @import '../../components/text-input/text-input.scss';
 @import '../../components/dropdown/dropdown.scss';
 @import '../../components/button/button.scss';
@@ -10,7 +9,6 @@
 @import '../../components/checkbox/checkbox.scss';
 @import '../../components/radio-button/radio-button.scss';
 @import '../../components/like-button/like-button.scss';
-@import '../../components/rating/rating.scss';
 @import '../../components/rating/rating.scss';
 @import '../../components/range-slider/range-slider.scss';
 @import '../../components/pagination/pagination.scss';
@@ -269,18 +267,6 @@
     margin-top: 1.875rem;
     margin-right: .0625rem;
   }
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 

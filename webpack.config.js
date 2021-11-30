@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path')
 let mode = 'development'
@@ -37,7 +38,13 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/pages/Form-elements/form-elements.pug'),
             filename: 'index.html',
-        })],
+        }),
+        new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+        })
+    ],
     module: {
         rules: [
             {
