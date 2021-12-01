@@ -1,0 +1,42 @@
+include ../label/label
+include ../dropdown/dropdown
+include ../button/button
+include ../calendar/calendar
+mixin room-search(options)
+    -
+        const {
+            header = 'Найдём номера под ваши пожелания',
+            headerTag = 'h1',
+            action = 'search.html',
+            method = 'GET',
+        } = options || {};
+
+    form.room-search(method=method, action=action)
+        header.room-search__header
+            #{headerTag}.room-search__title= header
+        .room-search__calendar.js-room-search__calendar
+            +calendar({
+                labels: ['Прибытие', 'Выезд']
+            })
+        .room-search__guests-dropdown
+            .room-search__label
+                +label({ label: 'Гости' })
+            .room-search__dropdown.js-room-search__dropdown
+                +dropdown({
+                    name: 'field-guests',
+                    type: 'guests',
+                    placeholder: 'Сколько гостей',
+                    rows: [
+                        {count: 0, text: 'взрослые'},
+                        {count: 0, text: 'дети'},
+                        {count: 0, text: 'младенцы'},
+                    ],
+                })
+        .room-search__button
+            +button({
+                theme: 'default',
+                caption: 'Подобрать номер',
+                type: 'submit',
+                size: 'fluid',
+                withArrow: true,
+            })

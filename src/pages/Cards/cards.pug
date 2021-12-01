@@ -1,0 +1,17 @@
+include ../../components/logo/logo
+include ../../components/room-search/room-search
+include ../../components/calendar/calendar
+
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        title 'Cards'
+    body.body-cards
+        .cards
+            nav.cards__nav
+                +logo
+            .cards__main
+                .cards__grid-column
+                    arcticle.cards__card
+                        +room-search()

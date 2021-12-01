@@ -11,7 +11,7 @@ console.log(mode + ' mode')
 module.exports = {
     mode: mode,
     entry: {
-        scripts: path.resolve(__dirname, './src/pages/Form-elements/form-elements.js'),
+        scripts: path.resolve(__dirname, './src/pages/Cards/cards.js'),
         // user: './src/user.js',
     },
     output: {
@@ -36,7 +36,7 @@ module.exports = {
             filename: '[name].[contenthash].css'
         }),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/pages/Form-elements/form-elements.pug'),
+            template: path.resolve(__dirname, './src/pages/Cards/cards.pug'),
             filename: 'index.html',
         }),
         new webpack.ProvidePlugin({
