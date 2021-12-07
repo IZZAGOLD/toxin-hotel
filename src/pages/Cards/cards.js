@@ -5,7 +5,9 @@ import './cards.scss';
 import '../../components/logo/logo.scss'
 
 import '../../components/room-search/room-search'
-import '../../components/room-search/room-search.js'
+import '../../components/room-book/room-book'
+import '../../components/sign-up/sign-up'
+
 
 
 import Calendar from '../../components/calendar/calendar';

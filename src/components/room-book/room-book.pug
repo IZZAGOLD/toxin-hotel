@@ -1,0 +1,81 @@
+include ../label/label
+include ../dropdown/dropdown
+include ../calendar/calendar
+
+mixin room-book(options)
+    -
+        const {
+            roomNumber = 888,
+            daysCount = 4,
+            pricePerDay = 9990,
+            discount = 2179,
+            fee = 300,
+            feature = 'люкс',
+            method = 'POST',
+            action = '/change-me'
+        } = options || {};
+
+    - const formatCurrency = require('../../utils/helpers').formatCurrency;
+
+    form.room-book(method=method action=action)
+        header.room-book__header
+            .room-book__number
+                span.room-book__number-sign= '№'
+                span.room-book__number-value= roomNumber
+                if feature
+                    span.room-book__number-feature= feature
+            .room-book__price-per-day
+                span.room-book__cost!= formatCurrency({value: pricePerDay})
+                |&nbsp;
+                span.room-book__date-unit= 'в сутки'
+
+        .room-book__calendar.js-room-book__calendar
+            +calendar({
+                labels: ['Прибытие', 'Выезд'],
+            })
+
+        .room-book__guests-dropdown-group
+            .room-book__label
+                +label({ label: 'Гости' })
+            .room-book__dropdown.js-room-book__dropdown
+                +dropdown({
+                    name: 'field-guests',
+                    type: 'guests',
+                    placeholder: 'Сколько гостей',
+                    rows: [
+                        {count: 2, text: 'взрослые'},
+                        {count: 1, text: 'дети'},
+                        {count: 0, text: 'младенцы'},
+                    ],
+                })
+
+        - const totalBrutto = pricePerDay * daysCount;
+        - const totalNetto = totalBrutto - discount + fee;
+
+        .room-book__result-grid.js-room-book__result-grid
+            .room-book__result-grid-cell!= `${formatCurrency({value: pricePerDay})} x ${daysCount} суток`
+            .room-book__result-grid-cell.room-book__result-grid-cell_type_currency!= formatCurrency({value: totalBrutto})
+
+            .room-book__result-grid-cell!= `Сбор за услуги: скидка ${formatCurrency({value: discount})}`
+            .room-book__result-grid-cell.room-book__result-grid-cell_type_info
+                span(title='change me').room-book__info-icon.material-icons= 'info_outline'
+            .room-book__result-grid-cell.room-book__result-grid-cell_type_currency= '0₽'
+
+            .room-book__result-grid-cell= 'Сбор за дополнительные услуги'
+            .room-book__result-grid-cell.room-book__result-grid-cell_type_info
+                span(title='change me').room-book__info-icon.material-icons= 'info_outline'
+            .room-book__result-grid-cell.room-book__result-grid-cell_type_currency!= formatCurrency({value: fee})
+
+        p.room-book__total
+            span.room-book__total-header= 'Итого'
+            span.room-book__total-line
+            span.room-book__total-sum!= formatCurrency({value: totalNetto})
+
+        footer.room-book__button
+            +button({
+                theme: 'default',
+                type: 'submit',
+                caption: 'Забронировать',
+                size: 'fluid',
+                withArrow: true,
+            })

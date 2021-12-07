@@ -2,12 +2,47 @@
 @import '../../utils/mixins.scss';
 
 @import '../../components/room-search/room-search.scss';
+@import '../../components/room-book/room-book.scss';
+@import '../../components/room-thumbnail/room-thumbnail.scss';
+@import '../../components/sign-in/sign-in.scss';
+@import '../../components/sign-up/sign-up.scss';
 
 
-
-
-
-.body-cards {
+body {
   background-color: #E5E5E5;
+}
+
+.cards {
+  &__nav {
+    @include ui-kit-navigation(2.375rem)
+  }
+
+  &__main {
+    @include inner-wrapper;
+    display: grid;
+    grid-template-columns: 1.1875fr 1.1875fr 1fr;
+    grid-column-gap: 2.5rem;
+    @media (max-width: $screen-md-max) {
+      grid-template-columns: repeat(auto-fill, minmax(23.75rem, 1fr));
+    }
+    @media (max-width: $screen-xs-max) {
+      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+  }
+
+  &__card {
+    margin-bottom: 2.5rem;
+    max-width: 23.75rem;
+
+    &_type {
+      &_room-thumbnail {
+        width: 16.875rem;
+      }
+    }
+
+    @media (max-width: $screen-sm-max) {
+      margin: 0 auto 2.5rem auto;
+    }
+  }
 }
 

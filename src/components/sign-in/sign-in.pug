@@ -1,0 +1,44 @@
+include ../text-input/text-input
+include ../button/button
+
+mixin sign-in(options)
+    -
+        const {
+            header = 'Войти',
+            headerTag = 'h1',
+            method = 'POST',
+            action = '/change-me'
+        } = options || {};
+
+    form.sign-in(method=method action=action)
+        header.sign-in__header
+            #{headerTag}.sign-in__title= header
+        .sign-in__text-input
+            +text-input({
+                name: 'field-email',
+                placeholder: 'Email',
+                type: 'email',
+            })
+        .sign-in__text-input
+            +text-input({
+                name: 'field-password',
+                placeholder: 'Пароль',
+                type: 'password',
+            })
+        .sign-in__button
+            +button({
+                theme: 'default',
+                type: 'submit',
+                caption: 'Войти',
+                size: 'fluid',
+                withArrow: true,
+            })
+        .sign-in__sign-up-group
+            p.sign-in__sign-up-hint= 'Нет аккаунта на Toxin?'
+            .sign-in__button.sign-in__button_type_sign-up
+                +button({
+                    theme: 'white',
+                    caption: 'Создать',
+                    href: 'sign-up-page.html',
+                    size: 'fluid',
+                })

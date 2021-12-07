@@ -1,17 +1,54 @@
 include ../../components/logo/logo
 include ../../components/room-search/room-search
 include ../../components/calendar/calendar
-
+include ../../components/room-thumbnail/room-thumbnail
+include ../../components/sign-in/sign-in
+include ../../components/sign-up/sign-up
+include ../../components/room-book/room-book
 doctype html
 html
     head
         meta(charset="utf-8")
         title 'Cards'
-    body.body-cards
+    body
         .cards
             nav.cards__nav
                 +logo
             .cards__main
                 .cards__grid-column
-                    arcticle.cards__card
+                    article.cards__card
                         +room-search()
+                    article.cards__card
+                        +sign-up()
+                .cards__grid-column
+                    article.cards__card
+                        +room-book()
+                    article.cards__card
+                        +sign-in()
+                .cards__grid-column
+                    article.cards__card
+                        +calendar({theme: 'inline'})
+                    article.cards__card.cards__card_type_room-thumbnail
+                        +room-thumbnail({
+                            roomNumber: 888,
+                            pricePerDay: 9990,
+                            feedbackCounter: 145,
+                            rate: 5,
+                            image: {
+                                src: require('./img/room-888.jpg'),
+                                alt: 'Room 888'
+                            },
+                            feature: 'люкс',
+                            hover: true
+                        })
+                    article.cards__card.cards__card_type_room-thumbnail
+                            +room-thumbnail({
+                                roomNumber: 840,
+                                pricePerDay: 9990,
+                                feedbackCounter: 65,
+                                rate: 4,
+                                image: {
+                                    src: require('./img/room-840.jpg'),
+                                    alt: 'Room 840'
+                                }
+                            })

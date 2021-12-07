@@ -1,0 +1,86 @@
+include ../text-input/text-input
+include ../radio-button/radio-button
+include ../checkbox/checkbox
+include ../label/label
+
+mixin sign-up(options)
+    -
+        const {
+            header = 'Регистрация аккаунта',
+            headerTag = 'h1',
+            method = 'POST',
+            action = '/change-me'
+        } = options || {};
+
+    form.sign-up(method=method action=action)
+        header.sign-up__header
+            #{headerTag}.sign-up__title= header
+        .sign-up__text-input
+            +text-input({
+                name: 'field-first-name',
+                placeholder: 'Имя',
+            })
+        .sign-up__text-input
+            +text-input({
+                name: 'field-last-name',
+                placeholder: 'Фамилия',
+            })
+        .sign-up__gender-group
+            .sign-up__radio-button
+                +radio-button({
+                    name: 'field-gender',
+                    value: 'male',
+                    label: 'Мужчина',
+                    isChecked: true,
+                })
+            .sign-up__radio-button
+                +radio-button({
+                    name: 'field-gender',
+                    value: 'female',
+                    label: 'Женщина',
+                })
+        .sign-up__birthday-group
+            .sign-up__label
+                +label({ label: 'Дата рождения' })
+                    .sign-up__text-input
+                        +text-input({
+                            format: 'date',
+                            hasDateMask: true,
+                        })
+        fieldset.sign-up__credentials-group
+            legend.sign-up__legend= 'Данные для входа в сервис'
+            .sign-up__text-input
+                +text-input({
+                    name: 'field-email',
+                    placeholder: 'Email',
+                    type: 'email',
+                })
+            .sign-up__text-input
+                +text-input({
+                    name: 'field-password',
+                    placeholder: 'Пароль',
+                    type: 'password',
+                })
+        .sign-up__checkbox
+            +checkbox({
+                name: 'field-promo',
+                theme: 'toggle',
+                label: 'Получать спецпредложения',
+            })
+        .sign-up__button
+            +button({
+                theme: 'default',
+                type: 'submit',
+                caption: 'Перейти к оплате',
+                size: 'fluid',
+                withArrow: true,
+            })
+        .sign-up__sign-in-group
+            p.sign-up__sign-in-hint= 'Уже есть аккаунт на Toxin'
+            .sign-up__button.sign-up__button_type_sign-in
+                +button({
+                    theme: 'white',
+                    caption: 'Войти',
+                    href: 'sign-in-page.html',
+                    size: 'fluid',
+                })
