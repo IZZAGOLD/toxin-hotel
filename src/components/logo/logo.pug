@@ -1,5 +1,4 @@
-mixin logo
-  // - const link = require('../../components/logo/img/logo.svg')
-  - const link = require(`images/logo/img/logo.svg`)
+mixin logo(text)
+ - const link = text === true ? require(`images/logo/img/logo-text.svg`) : require(`images/logo/img/logo.svg`)
   img.logo(src=link alt='Логотип Toxin')
 

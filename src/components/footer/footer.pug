@@ -1,0 +1,82 @@
+include ../logo/logo
+include ../text-input/text-input
+
+mixin footer(options)
+    -
+        const {
+            theme,
+            menus = [
+                {
+                    title: 'Навигация',
+                    links: [
+                        {text: 'О нас', href},
+                        {text: 'Новости', href},
+                        {text: 'Служба поддержки', href},
+                        {text: 'Услуги', href}
+                    ]
+                },
+                {
+                    title: 'О нас',
+                    links: [
+                        {text: 'О сервисе', href},
+                        {text: 'Наша команда', href},
+                        {text: 'Вакансии', href},
+                        {text: 'Инвесторы', href}
+                    ],
+                },
+                {
+                    title: 'Служба поддержки',
+                    links: [
+                        {text: 'Соглашения', href},
+                        {text: 'Сообщества', href},
+                        {text: 'Связь с нами', href}
+                    ]
+                }
+            ],
+            leftDescription = 'Бронирование номеров в лучшем отеле 2019 года по версии ассоциации «Отельные взгляды»',
+            rightDescription = 'Получайте специальные предложения и новости сервиса',
+            rightTitle = 'Подписка',
+            rightPlaceholder = 'Email',
+            copyright = 'Copyright © 2018 Toxin отель. Все права зачищены.',
+        } = options || {};
+
+    - const bemFactory = require('../../utils/helpers').bemFactory;
+    - const createBemClasses = bemFactory('footer');
+
+    footer(class=createBemClasses({ modifiers: {theme }, withJsPrefix: 'js' }))
+        .footer__main-area
+            .footer__inner-wrapper
+                .footer__about-us
+                    .footer__logo
+                        +logo(true)
+                    p.footer__description= leftDescription
+                nav.footer__navigation
+                    each menu, _ in menus
+                        section.footer__navigation-section
+                            header.footer__section-header
+                                p.footer__navigation-section-title= menu.title
+                            ul.footer__navigation-section-list
+                                each item, _ in menu.links
+                                    li.footer__navigation-section-item
+                                        a.footer__navigation-section-link(href=item.href)= item.text
+                form.footer__subscription-form(method='POST' action='/change-me')
+                    header.footer__section-header
+                        p.footer__subscription-form-title!= rightTitle
+                    p.footer__subscription-form-description= rightDescription
+                    .footer__text-input
+                        +text-input({
+                            name: 'field-email',
+                            placeholder: rightPlaceholder,
+                            withButton: true,
+                            type: 'email',
+                        })
+        .footer__copyright-area
+            .footer__inner-wrapper
+                p.footer__copyright= copyright
+                ul.footer__social-list
+                    li.footer__social-list-item
+                        a.footer__social-link.footer__social-link_theme_tw(href='/change-me' target='_blank' rel='noopener noreferrer')
+                    li.footer__social-list-item
+                        a.footer__social-link.footer__social-link_theme_fb(href='/change-me' target='_blank' rel='noopener noreferrer')
+                    li.footer__social-list-item
+                        a.footer__social-link.footer__social-link_theme_ig(href='/change-me' target='_blank' rel='noopener noreferrer')
