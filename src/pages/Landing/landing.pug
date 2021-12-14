@@ -1,0 +1,10 @@
+extends ../../components/templates/pages
+include ../../components/room-search/room-search
+
+block main
+    main.landing
+        .landing__inner-wrapper
+            section.landing__room-search
+                +room-search
+            p.landing__hero-text
+                = 'Лучшие номера для вашей работы, отдыха и просто вдохновения'
