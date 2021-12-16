@@ -1,0 +1,77 @@
+mixin donut-chart(options)
+    -
+        const {
+            votes = [
+                { label: 'perfect', count: 130 },
+                { label: 'satisfactorily', count: 65 },
+                { label: 'good', count: 65 },
+            ],
+            gradientMap = {
+                perfect: ['#FFE39C', '#FFBA9C'],
+                good: ['#66D2EA', '#6FCF97'],
+                satisfactorily: ['#BC9CFF', '#8BA4F9'],
+                bad: ['#919191', '#3D4975'],
+            },
+            voteLabels = {
+                perfect: 'Великолепно',
+                good: 'Хорошо',
+                satisfactorily: 'Удовлетворительно',
+                bad: 'Разочарован',
+            },
+            width = 122,
+            height = width,
+            strokeWidth = 4,
+        } = options || {};
+
+    - const cx = width / 2;
+    - const cy = width / 2;
+    - const radius = cx - strokeWidth;
+    - const circumreference = 2 * Math.PI * radius;
+
+    - const sortedValues = votes.sort((a, b) => (b.count - a.count));
+    - const total = sortedValues.reduce((acc, { count }) => acc + count, 0);
+
+    - let angleOffset = 90;
+
+    - const bemFactory = require('../../utils/helpers').bemFactory;
+    - const blockName = 'donut-chart';
+    - const createBemClasses = bemFactory(blockName);
+    - const withJsPrefix = true;
+
+    figure.donut-chart.js-donut-chart
+        svg.donut-chart__chart(height=height width=width viewBox=[0, 0, width, height].join(' '))
+            defs
+                each grad, label in gradientMap
+                    linearGradient(id=label)
+                        stop(offset='0%' stop-color=grad[0])
+                        stop(offset='100%' stop-color=grad[1])
+            each item in sortedValues
+                - const strokeDashOffset = circumreference - (item.count / total) * circumreference;
+                - const circleTransformValue = `rotate(${angleOffset}, ${cx}, ${cy})`;
+                - angleOffset = (item.count / total) * 360 + angleOffset;
+                g
+                    circle(
+                        class=createBemClasses({ elementName: 'circle', modifiers: { grade: item.label }, withJsPrefix })
+                        cx=cx
+                        cy=cy
+                        r=radius
+                        fill='transparent'
+                        stroke=`url(#${item.label})`
+                        stroke-width=strokeWidth
+                        stroke-dasharray=circumreference - 2
+                        stroke-dashoffset=strokeDashOffset
+                        transform=circleTransformValue
+                    )
+            g(class=createBemClasses({ elementName: 'counter', withJsPrefix }))
+                text(class=createBemClasses({ elementName: 'counter-value', withJsPrefix }) x='50%' y='48%' text-anchor='middle')= total
+                text.donut-chart__counter-unit(x='50%' y='63%' text-anchor='middle')= 'голосов'
+
+        ul.donut-chart__labels
+            each label, grade in voteLabels
+                - const countSourceItem = sortedValues.find(obj => obj.label === grade);
+                - const count = countSourceItem !== undefined ? countSourceItem.count : '0';
+                li(
+                    class=createBemClasses({ elementName: 'label', modifiers: { grade }, withJsPrefix })
+                    data-grade=grade
+                    data-count=count
+                )= label
