@@ -2,11 +2,11 @@ include ../like-button/like-button
 
 mixin feedback(options)
     - const { author, date, text, favoritesCount, isFavorite } = options || {};
-    - const avatar = require('../../components/feedback/img/person1.png')
+
     .feedback
         figure.feedback__author-picture-wrapper
             if author.image
-                img.feedback__author-picture(src=avatar alt=author.image.alt)
+                img.feedback__author-picture(src=author.image.src alt=author.image.alt)
         .feedback__header
             p.feedback__author-name= author.name
             p.feedback__date= date
