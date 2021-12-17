@@ -2,7 +2,6 @@ include ../like-button/like-button
 
 mixin feedback(options)
     - const { author, date, text, favoritesCount, isFavorite } = options || {};
-
     .feedback
         figure.feedback__author-picture-wrapper
             if author.image
