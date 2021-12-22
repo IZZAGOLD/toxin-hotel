@@ -1,0 +1,7 @@
+extends ../../components/templates/pages
+include ../../components/sign-in/sign-in
+block main
+    main.sign-in-page
+        .sign-in-page__inner-wrapper
+            section.sign-in-page__form
+                +sign-in()
