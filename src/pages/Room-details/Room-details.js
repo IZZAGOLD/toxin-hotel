@@ -5,4 +5,4 @@ import '../../components/footer/footer.scss';
 import '../../components/feedback/feedback';
 import '../../components/room-book/room-book';
 import '../../components/donut-chart/donut-chart';
-import './room-details.scss';
+import './Room-details.scss';

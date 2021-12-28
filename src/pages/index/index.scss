@@ -1,3 +1,17 @@
-.body {
-  background-color: green
+@import '../../utils/mixins.scss';
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  margin-bottom: .5rem;
+  list-style: none;
+}
+
+a {
+  color: $color-purple;
+  text-decoration: none;
 }

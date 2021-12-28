@@ -1,1 +1,2 @@
-import './index.sscss'
+import './index.scss'
+import '../../utils/app.scss'

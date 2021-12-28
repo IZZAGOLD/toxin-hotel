@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const fs = require('fs');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path')
 let mode = 'development'
@@ -8,15 +9,37 @@ if (process.env.NODE_ENV === 'production') {
 }
 console.log(mode + ' mode')
 
+const pagesDir = './src/pages';
+
+const createEntriesFromPageList = (pages) => {
+    const webpackPageEntries = {};
+    const htmlWebpackPageInstances = [];
+
+    pages.forEach((pageName) => {
+        webpackPageEntries[pageName] = `${pagesDir}/${pageName}/${pageName}.js`;
+        htmlWebpackPageInstances.push(new HtmlWebpackPlugin({
+            filename: `${pageName}.html`,
+            template: `${pagesDir}/${pageName}/${pageName}.pug`,
+            chunks: [pageName],
+        }));
+    });
+
+    return [webpackPageEntries, htmlWebpackPageInstances];
+};
+
+const [webpackPageEntries, htmlWebpackPageInstances] = createEntriesFromPageList(
+    fs.readdirSync(pagesDir),
+);
+
 module.exports = {
     mode: mode,
     entry: {
-        scripts: path.resolve(__dirname, './src/pages/Sign-in/sign-in.js'),
-        // user: './src/user.js',
+        favicon: './src/favicons/favicons.js',
+        ...webpackPageEntries,
     },
     output: {
         filename: '[name].[contenthash].js',
-        assetModuleFilename: "assets/[hash][ext][query]",
+        assetModuleFilename: "assets/[name][ext][query]",
         clean: true,
     },
     devtool: 'source-map',
@@ -35,15 +58,12 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css'
         }),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/pages/Sign-in/sign-in.pug'),
-            filename: 'index.html',
-        }),
         new webpack.ProvidePlugin({
         $: 'jquery',
         jQuery: 'jquery',
         'window.jQuery': 'jquery',
-        })
+        }),
+        ...htmlWebpackPageInstances
     ],
     module: {
         rules: [
@@ -62,10 +82,7 @@ module.exports = {
                             postcssOptions: {
                                 plugins: [
                                     [
-                                        "postcss-preset-env",
-                                        {
-                                            // Options
-                                        },
+                                        "postcss-preset-env"
                                     ],
                                 ],
                             },
@@ -77,12 +94,23 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 generator: {
-                    filename: 'img/[name][ext][query]'
+                    filename: 'img/[hash][ext][query]'
+                },
+                type: 'asset/resource',
+
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                generator: {
+                    filename: 'fonts/[name][ext][query]'
                 },
                 type: 'asset/resource',
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                test: /\.(svg|png|ico|xml|json|webmanifest)$/,
+                generator: {
+                    filename: 'favicons/[name][ext][query]'
+                },
                 type: 'asset/resource',
             },
             {
