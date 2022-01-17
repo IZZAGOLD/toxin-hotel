@@ -1,26 +1,11 @@
-import $ from 'jquery';
-import {
-    CLASS_EXPANDED,
-    SELECTOR_TOGGLE,
-    SELECTOR_CHECKBOX_EXPANDABLE_LIST,
-} from './const';
+const CLASS_EXPANDED = 'checkbox-expandable-list_expanded'
+const SELECTOR_CHECKBOX_EXPANDABLE_LIST = '.js-checkbox-expandable-list'
+const SELECTOR_TOGGLE = document.querySelectorAll('.js-checkbox-expandable-list__toggle-button')
 
-const CheckboxExpandableList = function CheckboxListExpandable() {
-    this.init();
-};
+function CheckboxListExpandable(event) {
+    event.currentTarget.closest(SELECTOR_CHECKBOX_EXPANDABLE_LIST).classList.toggle(CLASS_EXPANDED)
+}
 
-CheckboxExpandableList.prototype.init = function init() {
-    this.addEventListeners();
-};
-
-CheckboxExpandableList.prototype.addEventListeners = function addEventListeners() {
-    $(SELECTOR_TOGGLE).on('click', this.handleToggleClick.bind(this));
-};
-
-CheckboxExpandableList.prototype.handleToggleClick = function handleToggleClick(e) {
-    e.preventDefault();
-
-    $(e.currentTarget).closest(SELECTOR_CHECKBOX_EXPANDABLE_LIST).toggleClass(CLASS_EXPANDED);
-};
-
-$(() => new CheckboxExpandableList());
+SELECTOR_TOGGLE.forEach((selector) => {
+    selector.addEventListener('click', (event) => {CheckboxListExpandable(event)})
+})

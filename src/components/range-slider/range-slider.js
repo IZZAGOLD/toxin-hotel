@@ -1,25 +1,23 @@
-import $ from 'jquery';
-import 'ion-rangeslider';
+import noUiSlider from 'nouislider';
 
-const RangeSlider = function RangeSlider($element) {
-    this.init($element);
-};
+const labelSelector = document.querySelector('.js-range-slider__label-hint')
+const slider = document.querySelector('.slider')
 
-RangeSlider.prototype.init = function init($element) {
-    this.$element = $element;
+const min = parseInt(slider.getAttribute('min'))
+const max = parseInt(slider.getAttribute('max'))
+const to = parseInt(slider.getAttribute('to'))
+const from = parseInt(slider.getAttribute('from'))
 
-    this.$element.ionRangeSlider({
-        hide_min_max: true,
-        hide_from_to: true,
-        onStart: this.render.bind(this),
-        onChange: this.render.bind(this),
-        onUpdate: this.render.bind(this),
-    });
-};
+noUiSlider.create(slider, {
+    start: [from, to],
+    behaviour: 'drag-tap',
+    connect: true,
+    range: {
+        'min': min,
+        'max': max
+    }
+})
 
-RangeSlider.prototype.render = function render(data) {
-    const range = `${data.from.toLocaleString('ru-RU')}₽ - ${data.to.toLocaleString('ru-RU')}₽`;
-    this.$element.closest('.js-range-slider').find('.js-range-slider__label-hint').text(range);
-};
-
-$(() => $('.js-range-slider__input').each((_, rangeSliderElement) => new RangeSlider($(rangeSliderElement))));
+slider.noUiSlider.on('update', function (values) {
+    labelSelector.innerHTML = `${Math.floor(values[0])}₽ - ${Math.floor(values[1])}₽`
+})

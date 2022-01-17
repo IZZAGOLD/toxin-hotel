@@ -4,7 +4,7 @@
   "description": "",
   "main": "colors-type.js",
   "scripts": {
-    "start": "set NODE_ENV=development&&webpack serve --open --port 9000",
+    "start": "set NODE_ENV=development&&webpack serve --open --port 9001",
     "dev": "set NODE_ENV=development&&webpack",
     "build": "set NODE_ENV=production&&webpack"
   },
@@ -40,11 +40,12 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.10.2",
-    "air-datepicker": "^2.2.3",
+    "air-datepicker": "^3.1.0",
     "imask": "^6.2.2",
     "ion-rangeslider": "^2.3.1",
     "jquery": "^3.5.1",
     "material-design-icons": "^3.0.1",
+    "nouislider": "^15.5.0",
     "paginationjs": "^2.1.5",
     "webpack-jquery-ui": "^2.0.1"
   }
